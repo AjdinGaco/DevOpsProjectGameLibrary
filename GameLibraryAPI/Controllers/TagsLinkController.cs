@@ -20,7 +20,7 @@ namespace GameLibraryAPI.Controllers
         [HttpGet]
         public List<TagsLink> GetAll()
         {
-            return context.TagsLink.ToList();
+            return context.TagLink.ToList();
         }
 
         [Route("link/{id1}/{id2}")]
@@ -32,7 +32,7 @@ namespace GameLibraryAPI.Controllers
             var game = context.Game.Find(id1);
             if (game == null)
                 return NotFound();
-            var linkedtag = context.Tags.Find(id2);
+            var linkedtag = context.Tag.Find(id2);
             if (linkedtag == null)
                 return NotFound();
 
@@ -41,10 +41,10 @@ namespace GameLibraryAPI.Controllers
 
             //Create a new taglink with the given info
             var tagslink = new TagsLink();
-            tagslink.GameID = game;
-            tagslink.TagID = linkedtag;
+            tagslink.Game = game;
+            tagslink.Tag = linkedtag;
 
-            context.TagsLink.Add(tagslink);
+            context.TagLink.Add(tagslink);
             context.SaveChanges();
             return Ok(tagslink);
         }
@@ -53,13 +53,13 @@ namespace GameLibraryAPI.Controllers
         [HttpPut]
         public IActionResult UpdateGame([FromBody] TagsLink updateTagsLink)
         {
-            var oldTagsLink = context.TagsLink.Find(updateTagsLink.ID);
+            var oldTagsLink = context.TagLink.Find(updateTagsLink.ID);
 
             if (oldTagsLink == null)
                 return NotFound();
 
-            oldTagsLink.GameID = updateTagsLink.GameID;
-            oldTagsLink.TagID = updateTagsLink.TagID;
+            oldTagsLink.Game = updateTagsLink.Game;
+            oldTagsLink.Tag = updateTagsLink.Tag;
 
             context.SaveChanges();
             return Ok(updateTagsLink);

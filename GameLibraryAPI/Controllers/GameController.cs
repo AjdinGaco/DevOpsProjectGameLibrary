@@ -30,7 +30,7 @@ namespace GameLibraryAPI.Controllers
             if (!string.IsNullOrWhiteSpace(title))
                 query = query.Where(d => d.Title == title);
             if (!string.IsNullOrWhiteSpace(dev))
-                query = query.Where(d => d.Developers == dev);
+                query = query.Where(d => d.Devs.DevName == dev);
             // TODO TAGS
 
             if (!string.IsNullOrWhiteSpace(sort))
@@ -63,35 +63,31 @@ namespace GameLibraryAPI.Controllers
 
 
         //TODO I WILL PROB REMOVE THIS LATER
-        [Route("getall")]
+        [Route("all")]
         [HttpGet]
         public List<Game> GetAll()
         {
             return context.Game.ToList();
         }
 
-        [Route("getfull/{id}")]
-        [HttpPost]
+        [Route("full/{id}")]
+        [HttpGet]
         public IActionResult GetGameInfo(int id)
         {
             FullGameInfo fullgame = new FullGameInfo();
             fullgame.game = context.Game
                 .Include(d => d.GameScores)
+                .Include(d => d.Devs)
                 .SingleOrDefault(d => d.ID == id);
 
-            IQueryable<TagsLink> tagquery = context.TagsLink;
-            fullgame.tags = new List<Tags>();
-            tagquery = tagquery.Where(d => d.GameID.ID == id);
+            IQueryable<TagsLink> tagquery = context.TagLink;
+            fullgame.tags = new List<Tag>();
+            tagquery = tagquery.Where(d => d.Game.ID == id);
             foreach (TagsLink i in tagquery)
             {
-                //TODO
-                fullgame.tags.Add(new Tags());
-/*                fullgame.tags.Add(context.Tags.Find(i.TagID.ID));*/
+                fullgame.tags.Add(i.Tag);
 
             }
-
-
-
             return Ok(fullgame);
         }
         [Route("delete/{id}")]
@@ -127,7 +123,7 @@ namespace GameLibraryAPI.Controllers
                 return NotFound();
 
             oldGame.Title = updatedGame.Title;
-            oldGame.Developers = updatedGame.Developers;
+            oldGame.Devs = updatedGame.Devs;
 
             context.SaveChanges();
 

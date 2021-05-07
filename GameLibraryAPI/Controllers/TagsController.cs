@@ -19,23 +19,23 @@ namespace GameLibraryAPI.Controllers
 
         [Route("getall")]
         [HttpGet]
-        public List<Tags> GetAll()
+        public List<Tag> GetAll()
         {
-            return context.Tags.ToList();
+            return context.Tag.ToList();
         }
         [HttpPost]
-        public IActionResult CreateTag([FromBody] Tags newTag)
+        public IActionResult CreateTag([FromBody] Tag newTag)
         {
-            context.Tags.Add(newTag);
+            context.Tag.Add(newTag);
             context.SaveChanges();
             return Created("", newTag);
         }
 
 
         [HttpPut]
-        public IActionResult UpdateTag([FromBody] Tags updatedTag)
+        public IActionResult UpdateTag([FromBody] Tag updatedTag)
         {
-            var oldTag = context.Tags.Find(updatedTag.ID);
+            var oldTag = context.Tag.Find(updatedTag.ID);
 
             if (oldTag == null)
                 return NotFound();

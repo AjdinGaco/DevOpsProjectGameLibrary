@@ -5654,8 +5654,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\comma\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\comma\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
@@ -5666,9 +5665,6 @@
       "packagesPath": "C:\\Users\\comma\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\comma\\Source\\Repos\\cloud-api-2020-2021-AjdinGaco\\GameLibraryAPI\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
         "C:\\Users\\comma\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"

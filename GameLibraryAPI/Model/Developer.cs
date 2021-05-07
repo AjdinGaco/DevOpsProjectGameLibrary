@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace GameLibraryAPI
 {
-    public class Tags
+    public class Tag
     {
         public int ID { get; set; }
         public string TagName { get; set; }

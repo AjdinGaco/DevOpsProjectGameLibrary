@@ -14,8 +14,9 @@ namespace GameLibraryAPI
         }
 
         public DbSet<Game> Game { get; set; }
-        public DbSet<Tags> Tags { get; set; }
-        public DbSet<TagsLink> TagsLink { get; set; }
+        public DbSet<Developer> Devs { get; set; }
+        public DbSet<Tag> Tag { get; set; }
+        public DbSet<TagsLink> TagLink { get; set; }
         public DbSet<GameScores> GameScores { get; set; }
         public DbSet<PlayerScore> PlayerScore { get; set; }
 

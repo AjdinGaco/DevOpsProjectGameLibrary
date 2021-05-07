@@ -12,7 +12,7 @@ namespace GameLibraryAPI
         public int ID { get; set; }
         [Required]
         public string Title { get; set; }
-        public string Developers { get; set; }
+        public Developer Devs { get; set; }
 
         [JsonIgnore]
         public GameScores GameScores { get; set; }

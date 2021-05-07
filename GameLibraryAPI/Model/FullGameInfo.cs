@@ -10,6 +10,6 @@ namespace GameLibraryAPI
     public class FullGameInfo
     {
         public Game game { get; set; }
-        public List<Tags> tags { get; set; }
+        public List<Tag> tags { get; set; }
     }
 }
