@@ -120,3 +120,8 @@ C:\Users\comma\Source\Repos\cloud-api-2020-2021-AjdinGaco\GameLibraryAPI\obj\Deb
 C:\Users\comma\Source\Repos\cloud-api-2020-2021-AjdinGaco\GameLibraryAPI\obj\Debug\netcoreapp3.1\GameLibraryAPI.dll
 C:\Users\comma\Source\Repos\cloud-api-2020-2021-AjdinGaco\GameLibraryAPI\obj\Debug\netcoreapp3.1\GameLibraryAPI.pdb
 C:\Users\comma\Source\Repos\cloud-api-2020-2021-AjdinGaco\GameLibraryAPI\obj\Debug\netcoreapp3.1\GameLibraryAPI.genruntimeconfig.cache
+C:\Users\comma\source\repos\cloud-api-2020-2021-AjdinGaco\GameLibraryAPI\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+C:\Users\comma\source\repos\cloud-api-2020-2021-AjdinGaco\GameLibraryAPI\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\comma\source\repos\cloud-api-2020-2021-AjdinGaco\GameLibraryAPI\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\comma\source\repos\cloud-api-2020-2021-AjdinGaco\GameLibraryAPI\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\comma\source\repos\cloud-api-2020-2021-AjdinGaco\GameLibraryAPI\obj\Debug\netcoreapp3.1\GameLibraryAPI.MvcApplicationPartsAssemblyInfo.cs

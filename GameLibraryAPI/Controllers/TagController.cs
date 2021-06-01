@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GameLibraryAPI.Controllers
 {
-    [Route("api/gamescore")]
+    [Route("api/tag")]
     public class TagsController : ControllerBase
     {
         private readonly LibraryContext context;
@@ -19,19 +19,18 @@ namespace GameLibraryAPI.Controllers
 
         [Route("all")]
         [HttpGet]
-        public List<GameScores> GetAll()
+        public List<Tag> GetAll()
         {
-            return context.GameScores.ToList();
+            return context.Tag.ToList();
         }
-        public IActionResult CreateGameScore([FromBody] GameScores newGameScore)
+
+        [HttpPost]
+        public IActionResult CreateTag([FromBody] Tag newTag)
         {
-            context.GameScores.Add(newGameScore);
+            context.Tag.Add(newTag);
             context.SaveChanges();
-            return Created("", newGameScore);
+            return Created("", newTag);
         }
-
-
-
 
     }
 }

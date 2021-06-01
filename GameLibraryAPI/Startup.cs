@@ -9,6 +9,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore;
+using Microsoft.OpenApi.Models;
 
 namespace GameLibraryAPI
 {
@@ -24,14 +26,18 @@ namespace GameLibraryAPI
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+
+
             services.AddDbContext<LibraryContext>(
-    options => options.UseSqlServer(
-        Configuration.GetConnectionString("DefaultConnection")
-    )
+                options => options.UseSqlServer(
+                Configuration.GetConnectionString("DefaultConnection")
+            ));
 
-);
-
+            services.AddControllers();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v2", new OpenApiInfo { Title = "GameLibraryAPI", Version = "v2" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,16 +46,15 @@ namespace GameLibraryAPI
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v2/swagger.json", "GameLibraryAPI v2"));
+
             }
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
-
-            app.UseAuthentication();
             app.UseAuthorization();
-
-
 
             app.UseEndpoints(endpoints =>
             {
@@ -58,5 +63,6 @@ namespace GameLibraryAPI
 
             DBInitializer.Initialize(libContext);
         }
+
     }
 }

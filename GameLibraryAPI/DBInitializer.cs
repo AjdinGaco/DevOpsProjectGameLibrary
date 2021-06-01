@@ -13,7 +13,7 @@ namespace GameLibraryAPI
 
             if (!context.Tag.Any())
             {
-                // Add all the basic started tags, more tags can be added in the future :D
+                // Add all the basic started tags, more tags are added as new games gets added. 
                 AddTag(context, "Action");
                 AddTag(context, "Adventure");
                 AddTag(context, "Casual");
@@ -24,22 +24,15 @@ namespace GameLibraryAPI
 
             if (!context.Game.Any())
             {
-                var newGameScores = new GameScores()
-                {
-                    GeneralScore = 9,
-                    Fun = 7,
-                    Replayability = 7,
-                    Action = 8
-                };
-                context.GameScores.Add(newGameScores);
-                context.SaveChanges();
-                Addgame(context,"Warframe","Digital Extremes","Action,Free to play", newGameScores);
-                Addgame(context, "Minecraft", "Notch", "Survival,Creative", newGameScores);
-                Addgame(context, "Overwatch", "Blizzard", "FPS,Action", newGameScores);
-                Addgame(context, "Warcraft", "Blizzard", "Fantasy,MMO,Free to play", newGameScores);
-                Addgame(context, "Call of duty", "Unknown", "Action,FPS", newGameScores);
-
-
+                Addgame(context,"Warframe","Digital Extremes","Action,Free to play");
+                Addgame(context, "Minecraft", "Notch", "Survival,Creative");
+                Addgame(context, "Overwatch", "Blizzard", "FPS,Action");
+                Addgame(context, "Warcraft", "Blizzard", "Fantasy,MMO,Free to play");
+                Addgame(context, "Call of duty", "Activision", "Action,FPS");
+                Addgame(context, "HITMAN 3", "IO Interactive", "Stealth");
+                Addgame(context, "Grand Theft Auto", "Rockstar Games", "Action");
+                Addgame(context, "Monster Hunter World", "Capcom", "Action, RPG");
+                Addgame(context, "Final Fantasy ", "Capcom", "Action, RPG, Fantasy");
             }
         }
         public static void AddTag(LibraryContext context, string tagName_)
@@ -52,13 +45,24 @@ namespace GameLibraryAPI
             context.SaveChanges();
         }
 
-        public static void Addgame(LibraryContext context, string _title,string _dev, string _tags,GameScores _gamescore)
+        public static void Addgame(LibraryContext context, string _title,string _dev, string _tags,GameScores _gamescore = null)
         {
             //Check if the game already exists
             IQueryable<Game> gamequery = context.Game;
             gamequery = gamequery.Where(d => d.Title == _title);
             if (!gamequery.Any())
             {
+                //If no scores put in put a 0 score in
+                if (_gamescore == null)
+                {
+                    _gamescore.GeneralScore = 0;
+                    _gamescore.Fun = 0;
+                    _gamescore.Replayability = 0;
+                    _gamescore.Action = 0;
+                }
+                context.GameScores.Add(_gamescore);
+                context.SaveChanges();
+
                 //Find dev
                 IQueryable<Developer> devsquery = context.Developers;
                 devsquery = devsquery.Where(d => d.DevName == _dev);

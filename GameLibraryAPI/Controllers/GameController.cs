@@ -116,7 +116,7 @@ namespace GameLibraryAPI.Controllers
                 return NotFound();
             context.Game.Remove(game);
             context.SaveChanges();
-            return NoContent();
+            return Ok();
 
         }
         [HttpPost]
@@ -148,10 +148,5 @@ namespace GameLibraryAPI.Controllers
             return Ok(oldGame);
 
         }
-
-
-
-
-
     }
 }

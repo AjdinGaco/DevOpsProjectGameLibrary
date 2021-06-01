@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\comma\\Source\\Repos\\cloud-api-2020-2021-AjdinGaco\\GameLibraryAPI\\GameLibraryAPI.csproj": {}
+    "C:\\Users\\comma\\source\\repos\\cloud-api-2020-2021-AjdinGaco\\GameLibraryAPI\\GameLibraryAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\comma\\Source\\Repos\\cloud-api-2020-2021-AjdinGaco\\GameLibraryAPI\\GameLibraryAPI.csproj": {
+    "C:\\Users\\comma\\source\\repos\\cloud-api-2020-2021-AjdinGaco\\GameLibraryAPI\\GameLibraryAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\comma\\Source\\Repos\\cloud-api-2020-2021-AjdinGaco\\GameLibraryAPI\\GameLibraryAPI.csproj",
+        "projectUniqueName": "C:\\Users\\comma\\source\\repos\\cloud-api-2020-2021-AjdinGaco\\GameLibraryAPI\\GameLibraryAPI.csproj",
         "projectName": "GameLibraryAPI",
-        "projectPath": "C:\\Users\\comma\\Source\\Repos\\cloud-api-2020-2021-AjdinGaco\\GameLibraryAPI\\GameLibraryAPI.csproj",
+        "projectPath": "C:\\Users\\comma\\source\\repos\\cloud-api-2020-2021-AjdinGaco\\GameLibraryAPI\\GameLibraryAPI.csproj",
         "packagesPath": "C:\\Users\\comma\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\comma\\Source\\Repos\\cloud-api-2020-2021-AjdinGaco\\GameLibraryAPI\\obj\\",
+        "outputPath": "C:\\Users\\comma\\source\\repos\\cloud-api-2020-2021-AjdinGaco\\GameLibraryAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\comma\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -47,6 +47,10 @@
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[5.0.5, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.1.4, )"
             }
           },
           "imports": [
