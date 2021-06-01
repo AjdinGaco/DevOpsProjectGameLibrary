@@ -17,7 +17,7 @@ namespace GameLibraryAPI.Controllers
             this.context = context;
         }
 
-        [Route("getall")]
+        [Route("all")]
         [HttpGet]
         public List<Tag> GetAll()
         {
@@ -26,6 +26,10 @@ namespace GameLibraryAPI.Controllers
         [HttpPost]
         public IActionResult CreateTag([FromBody] Tag newTag)
         {
+            //Validation
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
             context.Tag.Add(newTag);
             context.SaveChanges();
             return Created("", newTag);
@@ -35,8 +39,11 @@ namespace GameLibraryAPI.Controllers
         [HttpPut]
         public IActionResult UpdateTag([FromBody] Tag updatedTag)
         {
-            var oldTag = context.Tag.Find(updatedTag.ID);
+            //Validation
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
+            var oldTag = context.Tag.Find(updatedTag.ID);
             if (oldTag == null)
                 return NotFound();
 

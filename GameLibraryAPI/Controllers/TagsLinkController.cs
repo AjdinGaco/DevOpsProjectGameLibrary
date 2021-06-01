@@ -16,7 +16,7 @@ namespace GameLibraryAPI.Controllers
         {
             this.context = context;
         }
-        [Route("getall")]
+        [Route("all")]
         [HttpGet]
         public List<TagsLink> GetAll()
         {
@@ -28,7 +28,6 @@ namespace GameLibraryAPI.Controllers
         public IActionResult LinkGametoTagsLink(int id1, int id2)
         {
             // id 1 is de game id, id 2 is de tags id bv 1/1 => warframe link met action
-            
             var game = context.Game.Find(id1);
             if (game == null)
                 return NotFound();
@@ -53,8 +52,11 @@ namespace GameLibraryAPI.Controllers
         [HttpPut]
         public IActionResult UpdateGame([FromBody] TagsLink updateTagsLink)
         {
-            var oldTagsLink = context.TagLink.Find(updateTagsLink.ID);
+            //Validation
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
+            var oldTagsLink = context.TagLink.Find(updateTagsLink.ID);
             if (oldTagsLink == null)
                 return NotFound();
 

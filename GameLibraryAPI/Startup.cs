@@ -29,6 +29,7 @@ namespace GameLibraryAPI
     options => options.UseSqlServer(
         Configuration.GetConnectionString("DefaultConnection")
     )
+
 );
 
         }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GameLibraryAPI.Controllers
 {
-    [Route("api/tags")]
+    [Route("api/gamescore")]
     public class TagsController : ControllerBase
     {
         private readonly LibraryContext context;
@@ -17,7 +17,7 @@ namespace GameLibraryAPI.Controllers
             this.context = context;
         }
 
-        [Route("getall")]
+        [Route("all")]
         [HttpGet]
         public List<GameScores> GetAll()
         {

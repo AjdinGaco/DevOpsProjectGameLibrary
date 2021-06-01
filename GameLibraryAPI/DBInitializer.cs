@@ -60,14 +60,14 @@ namespace GameLibraryAPI
             if (!gamequery.Any())
             {
                 //Find dev
-                IQueryable<Developer> devsquery = context.Devs;
+                IQueryable<Developer> devsquery = context.Developers;
                 devsquery = devsquery.Where(d => d.DevName == _dev);
                 Developer linkedDev;
                 if (!devsquery.Any())
                 {
                     linkedDev = new Developer();
                     linkedDev.DevName = _dev;
-                    context.Devs.Add(linkedDev);
+                    context.Developers.Add(linkedDev);
                     context.SaveChanges();
 
                 }
@@ -81,7 +81,7 @@ namespace GameLibraryAPI
                 {
                     Title = _title,
                     GameScores = _gamescore,
-                    Devs = linkedDev
+                    Developer = linkedDev
                 };
 
                 context.Game.Add(newgame);

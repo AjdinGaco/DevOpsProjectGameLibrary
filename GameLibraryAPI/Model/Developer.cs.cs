@@ -7,11 +7,10 @@ using System.Threading.Tasks;
 
 namespace GameLibraryAPI
 {
-
-    //This is meant to send to client 
-    public class FullGameInfo
+    public class Developer
     {
-        public Game game { get; set; }
-        public List<Tag> tags { get; set; }
+        public int ID { get; set; }
+        [Required]
+        public string DevName { get; set; }
     }
 }
