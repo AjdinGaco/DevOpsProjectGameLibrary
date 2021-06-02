@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GameLibraryAPI.Controllers
 {
-    [Route("api/tag")]
+    [Route("game/tag")]
     public class TagsController : ControllerBase
     {
         private readonly LibraryContext context;
@@ -17,7 +17,6 @@ namespace GameLibraryAPI.Controllers
             this.context = context;
         }
 
-        [Route("all")]
         [HttpGet]
         public List<Tag> GetAll()
         {
@@ -30,6 +29,30 @@ namespace GameLibraryAPI.Controllers
             context.Tag.Add(newTag);
             context.SaveChanges();
             return Created("", newTag);
+        }
+
+        [Route("remove/{id}")]
+        [HttpDelete]
+        public IActionResult RemoveTag(int id)
+        {
+
+            var foundtag = context.Tag.Find(id);
+            if (foundtag == null)
+                return NotFound();
+
+            IQueryable<TagsLink> tagslinkquery = context.TagLink;
+            tagslinkquery = tagslinkquery.Where(d => d.Tag == foundtag);
+            foreach (TagsLink item in tagslinkquery)
+            {
+                context.TagLink.Remove(item);
+            }
+
+
+
+            context.Tag.Remove(foundtag);
+            context.SaveChanges();
+            return Ok();
+
         }
 
     }

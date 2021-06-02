@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace GameLibraryAPI.Controllers
 {
-    [Route("api")]
+    [Route("game")]
     public class GameController : ControllerBase
     {
         private readonly LibraryContext context;
@@ -20,6 +20,7 @@ namespace GameLibraryAPI.Controllers
 
         // THE WHOLE OF GRUD
         //Get games based on input title, devs, tags, sort page
+        [Route("/search")]
         [HttpGet]
         public List<Game> FindGames(string title, string dev, string tags, string sort, int? page, int length, string dir = "asc")
         {
@@ -62,13 +63,11 @@ namespace GameLibraryAPI.Controllers
                 query = query.Skip(page.Value * length);
             query.Take(length);
 
-
             return query.ToList();
         }
 
 
         //Will give the whole library of games and extra information about scores and Developer
-        [Route("all")]
         [HttpGet]
         public List<Game> GetAll()
         {
@@ -81,10 +80,16 @@ namespace GameLibraryAPI.Controllers
             return gamesinfo;
         }
 
-        [Route("full/{id}")]
+        //Gives full game info, including the tags
+        [Route("/{id}")]
         [HttpGet]
         public IActionResult GetGameInfo(int id)
         {
+            if (context.Game.Where(d => d.ID == id).FirstOrDefault<Game>() == null)
+            {
+                return NotFound();
+            }
+
             FullGameInfo fullgame = new FullGameInfo();
             fullgame.game = context.Game
                 .Include(d => d.GameScores)
@@ -103,7 +108,7 @@ namespace GameLibraryAPI.Controllers
 
 
         //Deletes the id
-        [Route("delete/{id}")]
+        [Route("/{id}")]
         [HttpDelete]
         public IActionResult DeleteGame(int id)
         {
@@ -114,6 +119,24 @@ namespace GameLibraryAPI.Controllers
             var game = context.Game.Find(id);
             if (game == null)
                 return NotFound();
+
+            var gamescore = context.GameScores.Find(game.GameScores);
+            if (gamescore != null)
+            {
+                context.GameScores.Remove(game.GameScores);
+                context.SaveChanges();
+            }
+
+            IQueryable<TagsLink> tagslinkquery = context.TagLink;
+            tagslinkquery = tagslinkquery.Where(d => d.Game == game);
+            foreach(TagsLink item in tagslinkquery)
+            {
+                context.TagLink.Remove(item);
+            }
+
+
+
+
             context.Game.Remove(game);
             context.SaveChanges();
             return Ok();
@@ -126,6 +149,34 @@ namespace GameLibraryAPI.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
+            var existingGame = context.Game.Where(d => d.ID == newGame.ID)
+                .FirstOrDefault<Game>();
+
+
+            if (existingGame != null)
+            {
+                return BadRequest("Game with that ID already exists.");
+            }
+
+
+
+            var existingDev = context.Developers.Where(d => d.DevName == newGame.Developer.DevName)
+                .FirstOrDefault<Developer>();
+
+            if (existingDev != null)
+            {
+                newGame.Developer = existingDev;
+            }
+            else
+            {
+                //Add dev to devdb
+                context.Developers.Add(newGame.Developer);
+                context.SaveChanges();
+            }
+
+
+            context.GameScores.Add(newGame.GameScores);
+            context.SaveChanges();
             context.Game.Add(newGame);
             context.SaveChanges();
             return Created("", newGame);
@@ -137,15 +188,21 @@ namespace GameLibraryAPI.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            if (context.Game.Find(updatedGame.ID) == null)
+            var existingGame = context.Game.Where(d => d.ID == updatedGame.ID)
+                .FirstOrDefault<Game>();
+
+            if (existingGame != null)
+            {
+                existingGame.Title = updatedGame.Title;
+                existingGame.Developer = updatedGame.Developer;
+                context.SaveChanges();
+            }
+            else
+            {
                 return NotFound();
-            var oldGame = context.Game.Find(updatedGame.ID);
-            if (oldGame == null)
-                return NotFound();
-            oldGame.Title = updatedGame.Title;
-            oldGame.Developer = updatedGame.Developer;
-            context.SaveChanges();
-            return Ok(oldGame);
+            }
+            
+            return Ok();
 
         }
     }

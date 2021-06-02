@@ -5848,11 +5848,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\comma\\Desktop\\Cloud apI project\\New folder\\GameLibraryAPI\\GameLibraryAPI.csproj",
+      "projectUniqueName": "C:\\Users\\comma\\Desktop\\Cloud apI project\\True Project\\GameLibraryAPI\\GameLibraryAPI.csproj",
       "projectName": "GameLibraryAPI",
-      "projectPath": "C:\\Users\\comma\\Desktop\\Cloud apI project\\New folder\\GameLibraryAPI\\GameLibraryAPI.csproj",
+      "projectPath": "C:\\Users\\comma\\Desktop\\Cloud apI project\\True Project\\GameLibraryAPI\\GameLibraryAPI.csproj",
       "packagesPath": "C:\\Users\\comma\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\comma\\Desktop\\Cloud apI project\\New folder\\GameLibraryAPI\\obj\\",
+      "outputPath": "C:\\Users\\comma\\Desktop\\Cloud apI project\\True Project\\GameLibraryAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
