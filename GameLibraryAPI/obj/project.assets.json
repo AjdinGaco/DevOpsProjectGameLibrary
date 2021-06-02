@@ -5842,17 +5842,21 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\comma\\.nuget\\packages\\": {}
+    "C:\\Users\\comma\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\comma\\source\\repos\\cloud-api-2020-2021-AjdinGaco\\GameLibraryAPI\\GameLibraryAPI.csproj",
+      "projectUniqueName": "C:\\Users\\comma\\Desktop\\Cloud apI project\\New folder\\GameLibraryAPI\\GameLibraryAPI.csproj",
       "projectName": "GameLibraryAPI",
-      "projectPath": "C:\\Users\\comma\\source\\repos\\cloud-api-2020-2021-AjdinGaco\\GameLibraryAPI\\GameLibraryAPI.csproj",
+      "projectPath": "C:\\Users\\comma\\Desktop\\Cloud apI project\\New folder\\GameLibraryAPI\\GameLibraryAPI.csproj",
       "packagesPath": "C:\\Users\\comma\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\comma\\source\\repos\\cloud-api-2020-2021-AjdinGaco\\GameLibraryAPI\\obj\\",
+      "outputPath": "C:\\Users\\comma\\Desktop\\Cloud apI project\\New folder\\GameLibraryAPI\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
         "C:\\Users\\comma\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"

@@ -55,6 +55,7 @@ namespace GameLibraryAPI
                 //If no scores put in put a 0 score in
                 if (_gamescore == null)
                 {
+                    _gamescore = new GameScores();
                     _gamescore.GeneralScore = 0;
                     _gamescore.Fun = 0;
                     _gamescore.Replayability = 0;
